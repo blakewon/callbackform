@@ -1,0 +1,65 @@
+{% extends 'test/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <table class="table table-sortable" id="mytable">
+        <thead>
+        <tr>
+            <th>Call</th>
+            <th  sorted="false" id="callback">Time for Callback⇅</th>
+            <th sorted="false" id="creation">Time of Creation⇅</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        {% for i in callbacks %}
+        {% if not i.archived %}
+            <tr id = "{{i.pk}}">
+                <td>
+                    <ul class="list-group" id={{i.pk}}l>
+                        <li><span>Name: {{i.name}}</span></li>
+                        {% if i.company%}
+                        <li><span>Company: {{i.company}}</span></li>
+                        {% endif %}
+                        <li>Email: {{i.email}}</li>
+
+                        {% if i.phone_number%}
+                        <li><span>Phone: {{i.phone_number}}</span></li>
+                        {% endif %}
+
+                        <li>Subject: {{i.subject}}</li>
+                        <li>Problem Description: {{i.problem_description}}</li>
+                        {% if i.comment %}
+                        <li id="{{i.pk}}c"> Comment: {{i.comment}}</li>
+                        {% else %}
+                        <li id="{{i.pk}}c"> Comment: N/A</li>
+                        {% endif %}
+                    </ul>  
+                </td>
+                <td>
+                    {%if i.date_field%}
+                    {{i.date_field|date:"d/m/Y"}} {{i.time_field}}</td>
+                    {%endif%}
+                <td> 
+                    {{i.creation_date|date:"d/m/Y H:i"}}
+                </td>
+                <td id = "{{i.pk}}">
+                    <button class="btn btn-sm btn-danger" href="" id="{{i.pk}}a">Archive</button>
+                    <br>
+                    <br>
+                    <button class="btn btn-sm btn-info" href="" id="{{i.pk}}b">Comment</button>
+                </td>
+            </tr>
+        {% endif %}
+        {% endfor %} 
+
+
+    </table>
+    <script>var csrftoken = '{{ csrf_token }}';</script>
+    <script type="text/javascript" src="{% static 'edit.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sort.js' %}"></script>
+
+</body>
+
+{% endblock %}
