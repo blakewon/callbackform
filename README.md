@@ -4,8 +4,8 @@ Django implementation of a callback form.
 
 # installation
 Required resources:
- -django
- -django.crispy_forms
+-django
+-django.crispy forms
  
 Create a virtual environment and then:
  ```
