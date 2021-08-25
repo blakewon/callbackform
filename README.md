@@ -17,4 +17,4 @@ After that is done, go into the directory of the project and run manage.py:
 ```
 python manage.py runserver
 ```
-When initialized, an ip address will show up in the command prompt/terminal. Simply copy-paste it into your terminal and you should be good to go.
+When initialized, an ip address will show up in the command prompt/terminal. Simply copy-paste it into your browser and you should be good to go.
